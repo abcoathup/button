@@ -17,10 +17,17 @@ contract('Button', function([admin, anotherAccount, buxxAccount]) {
         var _pushes = await button.pushes();
         assert.equal(0, _pushes);
         await buxx.methods['transfer(address,uint256,bytes)'](button.address, buttonFee, "0x", {from: anotherAccount} )
-        const balance = await buxx.balanceOf(button.address);
-        assert.equal(balance, buttonFee);
+        var _balance = await buxx.balanceOf(button.address);
+        assert.equal(_balance, buttonFee);
         _pushes = await button.pushes();
         assert.equal(1, _pushes);
+    })
+
+    it('withdraw', async function() {
+      await buxx.methods['transfer(address,uint256,bytes)'](button.address, buttonFee, "0x", {from: anotherAccount} )
+      await button.withdraw({from: admin});
+      var _balance = await buxx.balanceOf(admin)
+      assert.equal(_balance, buttonFee);
     })
   });
 });
