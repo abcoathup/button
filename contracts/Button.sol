@@ -26,7 +26,7 @@ contract Button {
     require(value >= PUSH_COST);
     require(msg.sender == address(flexbuxx));
     pushes++;
-    emit Pushed(from, _random() < 23);
+    emit Pushed(from, _random() == 1);
   }
 
   function withdraw () public {
@@ -36,7 +36,7 @@ contract Button {
   }
 
   function _random() private view returns (uint8) {
-    return uint8(uint256(keccak256(block.timestamp, block.difficulty))%251);
+    return uint8(uint256(keccak256(block.timestamp, block.difficulty))%2);
   }
 
 }

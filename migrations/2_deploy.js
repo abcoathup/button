@@ -1,6 +1,6 @@
 var Button = artifacts.require("./Button.sol");
 
 module.exports = function(deployer) {
-  var paymentTokenAddress = "0xe0728a9d55ebd03bfcc6e9faa59e6dfe96741636";  
+  var paymentTokenAddress = "0x5eb7e67ec2ce404ebabafed0a79bab10d030c58a";  
   deployer.deploy(Button, paymentTokenAddress);
 };
